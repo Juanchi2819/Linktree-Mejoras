@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Trivia F1</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Special+Gothic+Expanded+One&family=Poppins:wght@400;700&family=JetBrains+Mono&display=swap" rel="stylesheet">
+
+  <!-- Enlace a la hoja de estilos unificada -->
+  <link rel="stylesheet" href="styles.css">
+
+  <!-- INICIO: Bloque de correcciones CSS -->
+  <style>
+    /* 1. Corrección del posicionamiento del Footer */
+    body {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+    main {
+      flex-grow: 1; /* Hace que el contenido principal ocupe el espacio disponible */
+    }
+
+    /* 2. Corrección del color de la respuesta correcta */
+    :root {
+      --success: #28a745; /* Verde para respuestas correctas */
+      --success-foreground: #ffffff;
+    }
+    .respuesta.correcto {
+      background-color: var(--success) !important; /* !important para asegurar que sobreescriba el estilo original */
+      color: var(--success-foreground) !important;
+    }
+  </style>
+  <!-- FIN: Bloque de correcciones CSS -->
+
+</head>
+<body>
+
+  <nav>
+    <ul>
+      <li><a href="index.html">Inicio</a></li>
+      <li><a href="tablas.html">Evolución F1</a></li>
+      <!-- La clase 'active' resalta la página actual en el menú -->
+      <li><a href="juego.html" class="active">Trivia</a></li>
+      <li><a href="multimedia.html">Multimedia</a></li>
+    </ul>
+    <!-- Botón para cambiar entre modo claro y oscuro -->
+    <button id="theme-toggle" title="Cambiar tema">
+        <svg id="theme-icon-sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+        <svg id="theme-icon-moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+    </button>
+  </nav>
+
+  <main>
+    <section class="trivia-container animate-on-scroll">
+      <h1>Trivia de Fórmula 1</h1>
+
+      <div class="pregunta" id="contenedorPregunta">
+        <p id="preguntaTexto"></p>
+        <div id="opciones-container">
+            <!-- Los botones se generan con JavaScript -->
+        </div>
+      </div>
+
+      <button id="siguiente" onclick="siguientePregunta()">Siguiente pregunta</button>
+      <button id="reiniciar" onclick="reiniciarTrivia()">Volver a intentarlo</button>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2025 Juan Cruz Chavarria - Proyecto UADE</p>
+  </footer>
+
+  <script>
+    // --- SCRIPT PARA EL CAMBIO DE TEMA (MODO CLARO/OSCURO) ---
+    const themeToggle = document.getElementById('theme-toggle');
+    const sunIcon = document.getElementById('theme-icon-sun');
+    const moonIcon = document.getElementById('theme-icon-moon');
+
+    const applyTheme = (theme) => {
+        if (theme === 'light') {
+            document.body.classList.add('light-mode');
+            sunIcon.style.display = 'none';
+            moonIcon.style.display = 'block';
+        } else {
+            document.body.classList.remove('light-mode');
+            sunIcon.style.display = 'block';
+            moonIcon.style.display = 'none';
+        }
+    };
+
+    const currentTheme = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+    applyTheme(currentTheme);
+
+    themeToggle.addEventListener('click', () => {
+        const newTheme = document.body.classList.contains('light-mode') ? 'dark' : 'light';
+        localStorage.setItem('theme', newTheme);
+        applyTheme(newTheme);
+    });
+
+    // --- SCRIPT PARA LAS ANIMACIONES AL HACER SCROLL ---
+    const scrollElements = document.querySelectorAll(".animate-on-scroll");
+
+    const elementInView = (el, dividend = 1) => {
+        const elementTop = el.getBoundingClientRect().top;
+        return (elementTop <= (window.innerHeight || document.documentElement.clientHeight) / dividend);
+    };
+
+    const displayScrollElement = (element) => { element.classList.add("visible"); };
+    
+    const handleScrollAnimation = () => {
+        scrollElements.forEach((el) => {
+            if (elementInView(el, 1.25)) {
+                displayScrollElement(el);
+            }
+        });
+    }
+    window.addEventListener("scroll", handleScrollAnimation);
+    handleScrollAnimation();
+
+    // --- SCRIPT DE LA TRIVIA (CORREGIDO) ---
+    const preguntas = [
+      {
+        texto: "¿Cuál fue el último equipo en ganar un campeonato antes de Mercedes en 2014?",
+        opciones: ["Red Bull", "Ferrari", "McLaren"],
+        correcta: 0
+      },
+      {
+        texto: "¿Qué circuito es conocido como 'El Templo de la Velocidad'?",
+        opciones: ["Spa-Francorchamps", "Monza", "Silverstone"],
+        correcta: 1
+      },
+      {
+        texto: "¿Quién fue campeón mundial en 2009 con el equipo Brawn GP?",
+        opciones: ["Sebastian Vettel", "Jenson Button", "Fernando Alonso"],
+        correcta: 1
+      },
+      {
+        texto: "¿Qué piloto argentino ganó 5 campeonatos mundiales de F1?",
+        opciones: ["Juan Manuel Fangio", "Carlos Reutemann", "José Froilán González"],
+        correcta: 0
+      },
+      {
+        texto: "¿Cuál es el equipo con más títulos de constructores en la historia de la F1?",
+        opciones: ["Ferrari", "Mercedes", "Williams"],
+        correcta: 0
+      }
+    ];
+
+    let indicePreguntaActual = 0;
+    let puntaje = 0;
+
+    // 3. Corrección del reinicio: Se declaran con 'let' para poder reasignarlas
+    let preguntaTextoElem = document.getElementById("preguntaTexto");
+    let opcionesContainer = document.getElementById("opciones-container");
+    const contenedorPreguntaElem = document.getElementById("contenedorPregunta");
+    const btnSiguiente = document.getElementById("siguiente");
+    const btnReiniciar = document.getElementById("reiniciar");
+
+    function mostrarPregunta() {
+      const pregunta = preguntas[indicePreguntaActual];
+      preguntaTextoElem.textContent = pregunta.texto;
+      
+      opcionesContainer.innerHTML = ''; // Limpiar opciones anteriores
+      pregunta.opciones.forEach((opcion, index) => {
+          const boton = document.createElement('button');
+          boton.textContent = opcion;
+          boton.className = 'respuesta';
+          boton.onclick = () => verificarRespuesta(index);
+          opcionesContainer.appendChild(boton);
+      });
+
+      btnSiguiente.style.display = "none";
+      btnReiniciar.style.display = "none";
+    }
+
+    function verificarRespuesta(seleccionada) {
+      const pregunta = preguntas[indicePreguntaActual];
+      const botones = opcionesContainer.querySelectorAll(".respuesta");
+      
+      botones.forEach((btn, i) => {
+        btn.disabled = true;
+        if (i === pregunta.correcta) {
+          btn.classList.add("correcto");
+        } else if (i === seleccionada) {
+          btn.classList.add("incorrecto");
+        }
+      });
+
+      if (seleccionada === pregunta.correcta) {
+        puntaje++;
+      }
+      btnSiguiente.style.display = "inline-block";
+    }
+
+    function siguientePregunta() {
+      indicePreguntaActual++;
+      if (indicePreguntaActual < preguntas.length) {
+        mostrarPregunta();
+      } else {
+        contenedorPreguntaElem.innerHTML = `
+          <h2>¡Trivia finalizada! 🚥</h2>
+          <p>Respondiste correctamente ${puntaje} de ${preguntas.length} preguntas.</p>
+        `;
+        btnSiguiente.style.display = "none";
+        btnReiniciar.style.display = "inline-block";
+      }
+    }
+
+    function reiniciarTrivia() {
+      indicePreguntaActual = 0;
+      puntaje = 0;
+      // Se recrea la estructura original dentro del contenedor
+      contenedorPreguntaElem.innerHTML = `
+        <p id="preguntaTexto"></p>
+        <div id="opciones-container"></div>
+      `;
+      // Se vuelven a obtener las referencias a los elementos recién creados
+      preguntaTextoElem = document.getElementById("preguntaTexto");
+      opcionesContainer = document.getElementById("opciones-container");
+      
+      mostrarPregunta();
+    }
+
+    // Iniciar la trivia cuando la página cargue
+    document.addEventListener('DOMContentLoaded', mostrarPregunta);
+  </script>
+
+</body>
+</html>

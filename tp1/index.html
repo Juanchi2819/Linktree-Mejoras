@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Identikit Juan Cruz</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Special+Gothic+Expanded+One&family=Poppins:wght@400;700&family=JetBrains+Mono&display=swap" rel="stylesheet">
+
+    <!-- Enlace a la hoja de estilos unificada -->
+    <link rel="stylesheet" href="styles.css">
+
+    <!-- INICIO: Bloque de corrección para la galería -->
+    <style>
+        .gallery-grid {
+            display: flex; /* Usa Flexbox para alinear elementos en una fila */
+            justify-content: center; /* Centra las imágenes en el contenedor */
+            gap: 15px; /* Espacio entre las imágenes */
+            flex-wrap: wrap; /* Permite que las imágenes se apilen en pantallas pequeñas */
+            margin-top: 20px;
+        }
+        .gallery-grid img {
+            width: 100%;
+            max-width: 250px; /* Tamaño máximo para cada imagen */
+            height: auto; /* Mantiene la proporción */
+            border-radius: var(--radius);
+            border: 2px solid var(--border);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .gallery-grid img:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 15px var(--primary);
+        }
+    </style>
+    <!-- FIN: Bloque de corrección para la galería -->
+</head>
+<body>
+
+    <nav>
+        <ul>
+            <!-- La clase 'active' resalta la página actual en el menú -->
+            <li><a href="index.html" class="active">Inicio</a></li>
+            <li><a href="tablas.html">Evolución F1</a></li>
+            <li><a href="juego.html">Trivia</a></li>
+            <li><a href="multimedia.html">Multimedia</a></li>
+        </ul>
+        <!-- Botón para cambiar entre modo claro y oscuro -->
+        <button id="theme-toggle" title="Cambiar tema">
+            <svg id="theme-icon-sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+            <svg id="theme-icon-moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+        </button>
+    </nav>
+
+    <!-- El contenido principal ahora está dentro de la etiqueta <main> -->
+    <main>
+        <h1>Juan Cruz Chavarria</h1>
+
+        <!-- Sección de presentación con animación -->
+        <section class="main-container animate-on-scroll">
+            <img src="imagenes/IMG_20250413_220820_699.jpg" alt="Foto de Juan Cruz Chavarria" class="profile-image">
+            
+            <p>Tengo 21 años. Nací en Río Negro y actualmente vivo en Buenos Aires.</p>
+            <p>Estudio Licenciatura en Gestión de Tecnologías de la Información en UADE.</p>
+            <p>Soy un apasionado por la Fórmula 1 y el deporte motor. Me interesan las nuevas tecnologías y aprender constantemente.</p>
+
+            <div class="social-links">
+                <a href="https://www.formula1.com/" target="_blank" rel="noopener noreferrer" title="Fórmula 1"><img src="imagenes/f1.png" alt="Logo Fórmula 1"></a>
+                <a href="https://www.uade.edu.ar/" target="_blank" rel="noopener noreferrer" title="UADE"><img src="imagenes/LogoUade.png" alt="Logo UADE"></a>
+                <a href="https://mxgp.com/" target="_blank" rel="noopener noreferrer" title="MXGP"><img src="imagenes/moto.png" alt="Logo MXGP"></a>
+            </div>
+        </section>
+
+        <!-- Sección de galería con animación -->
+        <section class="gallery-container animate-on-scroll">
+            <h2>Mis Pasiones</h2>
+            <p>
+                Estas fotos reflejan algunas de mis pasiones: la Fórmula 1, una de las mayores inspiraciones que tengo desde chico, y mis gatitos, que me acompañan en mi día a día con mucho cariño.
+            </p>
+            <!-- INICIO: Galería corregida con Flexbox en lugar de tabla -->
+            <div class="gallery-grid">
+                <img src="imagenes/IMG_20250323_185924587_HDR.jpg" alt="Gato blanco y negro">
+                <img src="imagenes/IMG_20250323_192729803_HDR.jpg" alt="Gato en un sillón">
+                <img src="imagenes/IMG_20250323_200947640_HDR.jpg" alt="Gato en una caja">
+                <img src="imagenes/IMG_20250404_121014751_HDR.jpg" alt="Gato mirando a la cámara">
+            </div>
+            <!-- FIN: Galería corregida -->
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2025 Juan Cruz Chavarria - Proyecto UADE</p>
+    </footer>
+
+    <script>
+        // --- SCRIPT PARA EL CAMBIO DE TEMA (MODO CLARO/OSCURO) ---
+        const themeToggle = document.getElementById('theme-toggle');
+        const sunIcon = document.getElementById('theme-icon-sun');
+        const moonIcon = document.getElementById('theme-icon-moon');
+
+        // Función para aplicar el tema guardado
+        const applyTheme = (theme) => {
+            if (theme === 'light') {
+                document.body.classList.add('light-mode');
+                sunIcon.style.display = 'none';
+                moonIcon.style.display = 'block';
+            } else {
+                document.body.classList.remove('light-mode');
+                sunIcon.style.display = 'block';
+                moonIcon.style.display = 'none';
+            }
+        };
+
+        // Cargar el tema guardado en localStorage o usar el preferido por el sistema
+        const currentTheme = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+        applyTheme(currentTheme);
+
+        // Event listener para el botón
+        themeToggle.addEventListener('click', () => {
+            const newTheme = document.body.classList.contains('light-mode') ? 'dark' : 'light';
+            localStorage.setItem('theme', newTheme);
+            applyTheme(newTheme);
+        });
+
+
+        // --- SCRIPT PARA LAS ANIMACIONES AL HACER SCROLL ---
+        const scrollElements = document.querySelectorAll(".animate-on-scroll");
+
+        const elementInView = (el, dividend = 1) => {
+            const elementTop = el.getBoundingClientRect().top;
+            return (
+                elementTop <= (window.innerHeight || document.documentElement.clientHeight) / dividend
+            );
+        };
+
+        const displayScrollElement = (element) => {
+            element.classList.add("visible");
+        };
+
+        const handleScrollAnimation = () => {
+            scrollElements.forEach((el) => {
+                if (elementInView(el, 1.25)) {
+                    displayScrollElement(el);
+                }
+            });
+        }
+
+        // Ejecutar una vez al cargar y luego en cada scroll
+        window.addEventListener("scroll", () => {
+            handleScrollAnimation();
+        });
+        handleScrollAnimation(); // Para elementos ya visibles al cargar
+    </script>
+    
+</body>
+</html>
