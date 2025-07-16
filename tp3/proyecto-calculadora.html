@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proyecto: Calculadora | Juan Cruz Chavarria</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&family=JetBrains+Mono&family=Special+Gothic+Expanded+One&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+    <header>
+        <h1>Calculadora Interactiva</h1>
+        <p>Uno de mis proyectos para el TP3, enfocado en la manipulación del DOM y la lógica con JavaScript.</p>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="proyectos.html">Proyectos</a></li>
+            <li><a href="index.html#habilidades">Habilidades</a></li>
+            <li><a href="index.html#contacto">Contacto</a></li>
+        </ul>
+        <button id="theme-toggle" title="Cambiar tema">
+            <svg id="theme-icon-sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>
+            <svg id="theme-icon-moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
+        </button>
+    </nav>
+
+    <main>
+        <div class="calculadora-container animate-on-scroll">
+            <div class="calculadora">
+                <div class="visor">
+                    <div id="operacion-previa" class="operacion-previa"></div>
+                    <div id="valor-actual" class="valor-actual">0</div>
+                </div>
+                <div class="botones-grid">
+                    <button class="btn-calc clear span-2">AC</button>
+                    <button class="btn-calc delete">DEL</button>
+                    <button class="btn-calc operador">÷</button>
+                    <button class="btn-calc numero">7</button>
+                    <button class="btn-calc numero">8</button>
+                    <button class="btn-calc numero">9</button>
+                    <button class="btn-calc operador">×</button>
+                    <button class="btn-calc numero">4</button>
+                    <button class="btn-calc numero">5</button>
+                    <button class="btn-calc numero">6</button>
+                    <button class="btn-calc operador">-</button>
+                    <button class="btn-calc numero">1</button>
+                    <button class="btn-calc numero">2</button>
+                    <button class="btn-calc numero">3</button>
+                    <button class="btn-calc operador">+</button>
+                    <button class="btn-calc numero">0</button>
+                    <button class="btn-calc numero">.</button>
+                    <button class="btn-calc igual span-2">=</button>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <footer>
+        <div class="redes-sociales">
+            <a href="URL_A_TU_LINKEDIN" target="_blank">LinkedIn</a>
+            <a href="URL_A_TU_GITHUB" target="_blank">GitHub</a>
+        </div>
+        <p>&copy; 2025 Juan Cruz Chavarria - Proyecto Final UADE</p>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script src="js/proyecto-calculadora.js"></script>
+</body>
+</html>

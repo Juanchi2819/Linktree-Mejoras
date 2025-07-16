@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proyecto: Galería | Juan Cruz Chavarria</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&family=JetBrains+Mono&family=Special+Gothic+Expanded+One&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+    <header>
+        <h1>Galería de Imágenes</h1>
+        <p>Un proyecto interactivo con efecto Lightbox, creado con HTML, CSS y JavaScript.</p>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="proyectos.html">Proyectos</a></li>
+            <li><a href="index.html#habilidades">Habilidades</a></li>
+            <li><a href="index.html#contacto">Contacto</a></li>
+        </ul>
+        <button id="theme-toggle" title="Cambiar tema">
+            <svg id="theme-icon-sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>
+            <svg id="theme-icon-moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
+        </button>
+    </nav>
+
+    <main>
+        <div class="galeria-container animate-on-scroll">
+            <p class="galeria-descripcion">Haz clic en cualquier imagen para verla en grande.</p>
+            <div id="galeria-grid" class="galeria-grid">
+            </div>
+        </div>
+    </main>
+
+    <div id="lightbox" class="lightbox">
+        <button class="lightbox-close" title="Cerrar (Esc)">&times;</button>
+        <img id="lightbox-img" class="lightbox-img" src="">
+        <button class="lightbox-btn prev" title="Anterior (←)">&lt;</button>
+        <button class="lightbox-btn next" title="Siguiente (→)">&gt;</button>
+    </div>
+    
+    <footer>
+        <div class="redes-sociales">
+            <a href="URL_A_TU_LINKEDIN" target="_blank">LinkedIn</a>
+            <a href="URL_A_TU_GITHUB" target="_blank">GitHub</a>
+        </div>
+        <p>&copy; 2025 Juan Cruz Chavarria - Proyecto Final UADE</p>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script src="js/proyecto-galeria.js"></script>
+</body>
+</html>
